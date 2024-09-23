@@ -1,28 +1,25 @@
-export default function UserInput({ initialInput, inputChanged }) {
-    let input = initialInput
-    function updateInput(event) {
-        const { name, value } = event.target
-        input[name] = parseInt(value)
-        inputChanged(input)
-    }
-
+export default function UserInput({ userInput, handleChange }) {
     return <>
         <div id="user-input">
             <div className="input-group">
-                <label>Initial investment</label>
-                <label>Annual investment</label>
+                <p>
+                    <label>Initial investment</label>
+                    <input name="initialInvestment" type="number" value={userInput.initialInvestment} onChange={handleChange}/>
+                </p>
+                <p>
+                    <label>Annual investment</label>
+                    <input name="annualInvestment" type="number" value={userInput.annualInvestment} onChange={handleChange}/>
+                </p>
             </div>
             <div className="input-group">
-                <input name="initialInvestment" type="number" value={input.initialInvestment} onChange={updateInput}/>
-                <input name="annualInvestment" type="number" value={input.annualInvestment} onChange={updateInput}/>
-            </div>
-            <div className="input-group">
-                <label>Expected return</label>
-                <label>Duration</label>
-            </div>
-            <div className="input-group">
-                <input name="expectedReturn" type="number" value={input.expectedReturn} onChange={updateInput}/>
-                <input name="duration" type="number" value={input.duration} onChange={updateInput}/>
+                <p>
+                    <label>Expected return</label>
+                    <input name="expectedReturn" type="number" value={userInput.expectedReturn} onChange={handleChange}/>
+                </p>
+                <p>
+                    <label>Duration</label>
+                    <input min="1" name="duration" type="number" value={userInput.duration} onChange={handleChange}/>
+                </p>
             </div>
         </div>
     </>

@@ -14,15 +14,18 @@ export default function Results({ results }) {
             </tr>
         </thead>
         <tbody>
-            {results.map(row => (
-                <tr key={row.year}>
-                    <td>{row.year}</td>
-                    <td>{formatter.format(row.valueEndOfYear)}</td>
-                    <td>{formatter.format(row.interest)}</td>
-                    <td>{formatter.format(totalInterest += row.interest)}</td>
-                    <td>{formatter.format(row.valueEndOfYear - totalInterest)}</td>
-                </tr>
-            ))}
+            {results.map(row => {
+                totalInterest += row.interest
+                return (
+                    <tr key={row.year}>
+                        <td>{row.year}</td>
+                        <td>{formatter.format(row.valueEndOfYear)}</td>
+                        <td>{formatter.format(row.interest)}</td>
+                        <td>{formatter.format(totalInterest)}</td>
+                        <td>{formatter.format(row.valueEndOfYear - totalInterest)}</td>
+                    </tr>
+                )
+            })}
         </tbody>
     </table>
 }

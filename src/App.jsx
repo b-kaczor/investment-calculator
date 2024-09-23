@@ -12,20 +12,18 @@ const INITIAL_INPUT = {
 }
 
 function App() {
-  const [input, setInput] = useState({ ...INITIAL_INPUT })
-  const [results, setResults] = useState([])
+  const [input, setInput] = useState(INITIAL_INPUT)
 
+  function onInputChanged(event) {
+    const { name, value } = event.target
 
-  function onInputChanged(newInput) {
-    setInput(newInput)
-    let newResults = calculateInvestmentResults(newInput)
-    setResults(newResults)
+    setInput((prevInput) => { return { ...prevInput, [name]: +value } })
   }
 
   return <>
     <Header />
-    <UserInput initialInput={INITIAL_INPUT} inputChanged={onInputChanged}/>
-    <Results results={results}/>
+    <UserInput userInput={input} handleChange={onInputChanged}/>
+    <Results results={calculateInvestmentResults(input)}/>
   </>
 }
 
