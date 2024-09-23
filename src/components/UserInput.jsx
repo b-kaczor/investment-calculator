@@ -2,9 +2,7 @@ export default function UserInput({ initialInput, inputChanged }) {
     let input = initialInput
     function updateInput(event) {
         const { name, value } = event.target
-        input[name] = value
-
-        console.log(name,value)
+        input[name] = parseInt(value)
         inputChanged(input)
     }
 

@@ -5,26 +5,27 @@ import UserInput from "./components/UserInput"
 import { calculateInvestmentResults } from "./util/investment"
 
 const INITIAL_INPUT = {
-  initialInvestment: 10000,
-  annualInvestment: 5000,
-  expectedReturn: 8,
+  initialInvestment: 15000,
+  annualInvestment: 900,
+  expectedReturn: 7,
   duration: 10  
 }
 
 function App() {
   const [input, setInput] = useState({ ...INITIAL_INPUT })
-  const [result, setResult] = useState([])
+  const [results, setResults] = useState([])
 
 
-  function onInputChanged() {
-    let newResult = calculateInvestmentResults(input)
-    setResult(newResult)
+  function onInputChanged(newInput) {
+    setInput(newInput)
+    let newResults = calculateInvestmentResults(newInput)
+    setResults(newResults)
   }
 
   return <>
     <Header />
     <UserInput initialInput={INITIAL_INPUT} inputChanged={onInputChanged}/>
-    <Results />
+    <Results results={results}/>
   </>
 }
 
